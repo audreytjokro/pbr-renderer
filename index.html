@@ -1,13 +1,96 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBR Renderer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #1a1a1a;
+            color: #ffffff;
+            overflow: hidden;
+        }
+        
+        #canvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+            cursor: grab;
+        }
+        
+        #canvas:active {
+            cursor: grabbing;
+        }
+        
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            max-width: 250px;
+        }
+        
+        #info h1 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #4a9eff;
+        }
+        
+        #fps {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        
+        .error {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #d32f2f;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            text-align: center;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    
+    <div id="info">
+        <h1>Material Studio</h1>
+        <p><strong>Interactive PBR Material Designer</strong></p>
+        <p>🎨 <strong>Choose Object:</strong> Sphere, Cube, Cylinder, Plane</p>
+        <p>⚡ <strong>Tweak Materials:</strong> Real-time PBR parameters</p>
+        <p>🌅 <strong>Change Environment:</strong> Studio, Outdoor, Sunset, Night</p>
+        <p>✨ <strong>Try Presets:</strong> Gold, Silver, Plastic, Wood...</p>
+        <p>🖱️ <strong>Navigate:</strong> Drag to orbit • Scroll to zoom</p>
+    </div>
+    
+    <div id="fps">
+        <div id="fps-counter">FPS: --</div>
+        <div id="frame-time">Frame: -- ms</div>
+        <div id="triangles">Triangles: --</div>
+    </div>
+
+    <script type="module" src="src/js/main.js"></script>
+</body>
 </html>

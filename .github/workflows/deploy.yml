@@ -1,0 +1,41 @@
+# .github/workflows/deploy.yml
+name: Deploy PBR Renderer
+
+on:
+  push:
+    branches: [ main ]  # Only run when you push to main branch
+  workflow_dispatch:    # Allows you to run manually if needed
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Build project
+        run: npm run build
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        
+      - name: Upload to Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+          
+      - name: Deploy to Pages
+        uses: actions/deploy-pages@v4
